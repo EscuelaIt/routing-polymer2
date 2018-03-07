@@ -1,0 +1,40 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="vista-contacto">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <h2>Formulario de contacto</h2>
+    <p>Estamos encantados de recibir tus mensajes...</p>
+
+  </template>
+
+  <script>
+
+    class VistaContacto extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'vista-contacto';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          
+        };
+      }
+
+
+    }
+
+    window.customElements.define(VistaContacto.is, VistaContacto);
+  </script>
+</dom-module>

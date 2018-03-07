@@ -1,0 +1,40 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="vista-home">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <h2>home...</h2>
+    <p>Esta es la vista home</p>
+
+  </template>
+
+  <script>
+
+    class VistaHome extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'vista-home';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          
+        };
+      }
+
+
+    }
+
+    window.customElements.define(VistaHome.is, VistaHome);
+  </script>
+</dom-module>

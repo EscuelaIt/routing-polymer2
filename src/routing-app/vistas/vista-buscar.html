@@ -1,0 +1,40 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="vista-buscar">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <h2>Buscar...</h2>
+    <p>Esta es la vista buscar</p>
+
+  </template>
+
+  <script>
+
+    class VistaBuscar extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'vista-buscar';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          
+        };
+      }
+
+
+    }
+
+    window.customElements.define(VistaBuscar.is, VistaBuscar);
+  </script>
+</dom-module>

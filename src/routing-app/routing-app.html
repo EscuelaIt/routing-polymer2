@@ -1,0 +1,100 @@
+<link rel="import" href="../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/iron-selector/iron-selector.html">
+
+<link rel="lazy-import" href="./vistas/vista-home.html">
+<link rel="lazy-import" href="./vistas/vista-usuarios.html">
+<link rel="lazy-import" href="./vistas/vista-contacto.html">
+<link rel="lazy-import" href="./vistas/vista-buscar.html">
+<link rel="lazy-import" href="./vistas/vista-404.html">
+<link rel="lazy-import" href="./vistas/vista-productos.html">
+
+<dom-module id="routing-app">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+      iron-selector a.iron-selected {
+        color: red;
+        font-weight: bold;
+      }
+    </style>
+
+    <app-location route="{{route}}"></app-location>
+    <app-route
+      route="{{route}}"
+      pattern="/:page"
+      data="{{data}}"
+      tail="{{routeTail}}"
+    ></app-route>
+
+    <iron-selector selected="[[page]]" attr-for-selected="name">
+      <a name="home" href="/">home</a> | 
+      <a name="usuarios" href="/usuarios/">Usuarios</a> | 
+      <a name="contacto" href="/contacto/">contacto</a> | 
+      <a name="buscar" href="/buscar/">Buscar</a> | 
+      <a name="productos" href="/productos/">productos</a> 
+    </iron-selector>
+    
+    <iron-pages selected="[[page]]" attr-for-selected="name">
+        <vista-home name="home"></vista-home>
+        <vista-usuarios name="usuarios"></vista-usuarios>
+        <vista-contacto name="contacto"></vista-contacto>
+        <vista-buscar name="buscar"></vista-buscar>
+        <vista-productos name="productos" route="[[routeTail]]"></vista-productos>
+        <vista-404 name="404"></vista-404>
+    </iron-pages>
+    
+  </template>
+
+  <script>
+    /**
+     * @customElement
+     * @polymer
+     */
+    class RoutingApp extends Polymer.Element {
+      static get is() { return 'routing-app'; }
+      static get properties() {
+        return {
+          route: Object,
+          data: Object,
+          page: {
+            type: String,
+            observer: 'pageChanged'
+          },
+          routeTail: Object
+        };
+      }
+
+      static get observers() {
+        return [
+          'routePageChanged(data.page)'
+        ];
+      }  
+
+      routePageChanged(page) {
+        this.page = page || 'home';
+      }
+
+      pageChanged(page) {
+        console.log('cambia page', page);
+        var resolvedPageUrl = this.resolveUrl('vistas/vista-' + page + '.html');
+        Polymer.importHref(
+            resolvedPageUrl,
+            null,
+            this._showPage404.bind(this),
+            true);
+      }
+
+      _showPage404() {
+        console.log('mostrar error 404');
+        this.page = '404';
+      }
+    }
+
+    window.customElements.define(RoutingApp.is, RoutingApp);
+  </script>
+</dom-module>

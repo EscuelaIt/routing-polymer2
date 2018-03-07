@@ -1,0 +1,71 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+<link rel="import" href="../../../bower_components/app-route/app-route.html">
+<link rel="import" href="./vista-producto-concreto.html">
+
+<dom-module id="vista-productos">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+      [hidden] {
+        display: none;
+      }
+    </style>
+
+    <app-route route="{{route}}" pattern="/:id" data="{{data}}"></app-route>
+
+    <a href="/productos/23">Producto 23</a> 
+    <a href="/productos/4">Producto 4</a> 
+    <a href="/productos/9000">Producto 9000</a> 
+
+    <p hidden$="[[!muestraHome]]">Esta es la vista home productos</p>
+
+    <vista-producto-concreto hidden$="[[muestraHome]]" id="[[data.id]]"></vista-producto-concreto>
+  </template>
+
+  <script>
+
+    class VistaProductos extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'vista-productos';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          route: Object,
+          data: Object,
+          page: String,
+          muestraHome: Boolean
+        };
+      }
+
+      /**
+        * Array of strings describing multi-property observer methods and their
+        * dependant properties
+        */
+      static get observers() {
+        return [
+          'dataIdChanged(data.id)'
+        ];
+      }
+      
+      dataIdChanged(id) {
+        console.log('dataIdChanged', id);
+        if(!id || id === '') {
+          this.muestraHome = true;
+        } else {
+          this.muestraHome = false;
+        }
+      }
+    }
+
+    window.customElements.define(VistaProductos.is, VistaProductos);
+  </script>
+</dom-module>

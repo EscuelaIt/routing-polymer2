@@ -1,0 +1,44 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="vista-404">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <h2>404...</h2>
+    <p>Esta es la vista 404</p>
+
+  </template>
+
+  <script>
+
+    class Vista404 extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'vista-404';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          
+        };
+      }
+
+      ready() {
+        super.ready();
+        console.log('aki')
+      }
+
+    }
+
+    window.customElements.define(Vista404.is, Vista404);
+  </script>
+</dom-module>

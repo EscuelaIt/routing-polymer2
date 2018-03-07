@@ -1,0 +1,40 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="vista-usuarios">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <h2>usuarios...</h2>
+    <p>Esta es la vista usuarios para escuelaIT</p>
+
+  </template>
+
+  <script>
+
+    class VistaUsuarios extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'vista-usuarios';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          
+        };
+      }
+
+
+    }
+
+    window.customElements.define(VistaUsuarios.is, VistaUsuarios);
+  </script>
+</dom-module>

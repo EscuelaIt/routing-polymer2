@@ -1,0 +1,40 @@
+<link rel="import" href="../../../bower_components/polymer/polymer-element.html">
+
+<dom-module id="vista-producto-concreto">
+  <template>
+    <style>
+      :host {
+        display: block
+      }
+    </style>
+
+    <h2>producto-concreto...</h2>
+    <p>Esta es la vista producto-concreto</p>
+    [[id]]
+  </template>
+
+  <script>
+
+    class VistaProductoConcreto extends Polymer.Element {
+      /**
+       * String providing the tag name to register the element under.
+       */
+      static get is() {
+        return 'vista-producto-concreto';
+      }
+
+      /**
+       * Object describing property-related metadata used by Polymer features
+       */
+      static get properties() {
+        return {
+          id: String
+        };
+      }
+
+
+    }
+
+    window.customElements.define(VistaProductoConcreto.is, VistaProductoConcreto);
+  </script>
+</dom-module>
